@@ -33,7 +33,8 @@ export default function AuthPage() {
       if (error) {
         setError(error.message)
       } else {
-        setMessage('Check your email to confirm your account, then log in.')
+        router.push('/')
+        router.refresh()
       }
     }
     setLoading(false)
