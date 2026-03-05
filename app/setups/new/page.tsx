@@ -45,6 +45,12 @@ const BRAKES: FieldConfig[] = [
   { label: 'Brake Pressure %', key: 'brake_pressure', min: 80, max: 100 },
   { label: 'Brake Bias %', key: 'brake_bias', min: 50, max: 70 },
 ]
+const TYRES: FieldConfig[] = [
+  { label: 'Front Left (PSI)', key: 'front_left_tyre_pressure', min: 21.0, max: 25.0, step: 0.1 },
+  { label: 'Front Right (PSI)', key: 'front_right_tyre_pressure', min: 21.0, max: 25.0, step: 0.1 },
+  { label: 'Rear Left (PSI)', key: 'rear_left_tyre_pressure', min: 21.0, max: 25.0, step: 0.1 },
+  { label: 'Rear Right (PSI)', key: 'rear_right_tyre_pressure', min: 21.0, max: 25.0, step: 0.1 },
+]
 
 export default function NewSetupPage() {
   const [userId, setUserId] = useState<string | null>(null)
@@ -58,6 +64,8 @@ export default function NewSetupPage() {
     front_suspension: 5, rear_suspension: 5, front_anti_roll_bar: 5,
     rear_anti_roll_bar: 5, front_ride_height: 5, rear_ride_height: 5,
     brake_pressure: 90, brake_bias: 58,
+    front_left_tyre_pressure: 23.0, front_right_tyre_pressure: 23.0,
+    rear_left_tyre_pressure: 22.0, rear_right_tyre_pressure: 22.0,
   })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -155,6 +163,7 @@ export default function NewSetupPage() {
           { title: 'Suspension Geometry', fields: GEOMETRY },
           { title: 'Suspension', fields: SUSPENSION },
           { title: 'Brakes', fields: BRAKES },
+          { title: 'Tyre Pressures', fields: TYRES },
         ].map(({ title: sectionTitle, fields }) => (
           <div key={sectionTitle} className="bg-zinc-900 border border-zinc-800 rounded-lg p-4 flex flex-col gap-3">
             <h2 className="text-sm font-semibold text-red-400 uppercase tracking-wider">{sectionTitle}</h2>
