@@ -20,36 +20,35 @@ const F1_CARS = [
 type FieldConfig = { label: string; key: string; min: number; max: number; step?: number }
 
 const AERO: FieldConfig[] = [
-  { label: 'Front Wing', key: 'front_wing', min: 1, max: 50 },
-  { label: 'Rear Wing', key: 'rear_wing', min: 1, max: 50 },
+  { label: 'Front Wing', key: 'front_wing', min: 0, max: 50 },
+  { label: 'Rear Wing', key: 'rear_wing', min: 0, max: 50 },
 ]
 const TRANSMISSION: FieldConfig[] = [
   { label: 'On Throttle %', key: 'on_throttle', min: 50, max: 100 },
-  { label: 'Off Throttle %', key: 'off_throttle', min: 50, max: 100 },
+  { label: 'Off Throttle %', key: 'off_throttle', min: 20, max: 100 },
+  { label: 'Engine Braking', key: 'engine_braking', min: 0, max: 100 },
 ]
 const GEOMETRY: FieldConfig[] = [
   { label: 'Front Camber', key: 'front_camber', min: -3.5, max: -2.5, step: 0.1 },
   { label: 'Rear Camber', key: 'rear_camber', min: -2.0, max: -1.0, step: 0.1 },
-  { label: 'Front Toe', key: 'front_toe', min: 0.05, max: 0.15, step: 0.01 },
-  { label: 'Rear Toe', key: 'rear_toe', min: 0.2, max: 0.5, step: 0.01 },
+  { label: 'Front Toe', key: 'front_toe', min: 0.00, max: 0.10, step: 0.01 },
+  { label: 'Rear Toe', key: 'rear_toe', min: 0.10, max: 0.30, step: 0.01 },
 ]
 const SUSPENSION: FieldConfig[] = [
-  { label: 'Front Suspension', key: 'front_suspension', min: 1, max: 10 },
-  { label: 'Rear Suspension', key: 'rear_suspension', min: 1, max: 10 },
-  { label: 'Front Anti-Roll Bar', key: 'front_anti_roll_bar', min: 1, max: 10 },
-  { label: 'Rear Anti-Roll Bar', key: 'rear_anti_roll_bar', min: 1, max: 10 },
-  { label: 'Front Ride Height', key: 'front_ride_height', min: 1, max: 10 },
-  { label: 'Rear Ride Height', key: 'rear_ride_height', min: 1, max: 10 },
+  { label: 'Front Suspension', key: 'front_suspension', min: 1, max: 41 },
+  { label: 'Rear Suspension', key: 'rear_suspension', min: 1, max: 41 },
+  { label: 'Front Anti-Roll Bar', key: 'front_anti_roll_bar', min: 1, max: 21 },
+  { label: 'Rear Anti-Roll Bar', key: 'rear_anti_roll_bar', min: 1, max: 21 },
+  { label: 'Front Ride Height', key: 'front_ride_height', min: 19, max: 30 },
+  { label: 'Rear Ride Height', key: 'rear_ride_height', min: 40, max: 60 },
 ]
 const BRAKES: FieldConfig[] = [
   { label: 'Brake Pressure %', key: 'brake_pressure', min: 80, max: 100 },
-  { label: 'Brake Bias %', key: 'brake_bias', min: 50, max: 70 },
+  { label: 'Front Brake Bias %', key: 'brake_bias', min: 50, max: 70 },
 ]
 const TYRES: FieldConfig[] = [
-  { label: 'Front Left (PSI)', key: 'front_left_tyre_pressure', min: 21.0, max: 25.0, step: 0.1 },
-  { label: 'Front Right (PSI)', key: 'front_right_tyre_pressure', min: 21.0, max: 25.0, step: 0.1 },
-  { label: 'Rear Left (PSI)', key: 'rear_left_tyre_pressure', min: 21.0, max: 25.0, step: 0.1 },
-  { label: 'Rear Right (PSI)', key: 'rear_right_tyre_pressure', min: 21.0, max: 25.0, step: 0.1 },
+  { label: 'Front Pressure (PSI)', key: 'front_tyre_pressure', min: 22.0, max: 29.5, step: 0.1 },
+  { label: 'Rear Pressure (PSI)', key: 'rear_tyre_pressure', min: 20.0, max: 26.5, step: 0.1 },
 ]
 
 export default function NewSetupPage() {
@@ -59,13 +58,12 @@ export default function NewSetupPage() {
   const [car, setCar] = useState(F1_CARS[0])
   const [notes, setNotes] = useState('')
   const [values, setValues] = useState<Record<string, number>>({
-    front_wing: 25, rear_wing: 25, on_throttle: 75, off_throttle: 75,
-    front_camber: -3.0, rear_camber: -1.5, front_toe: 0.10, rear_toe: 0.35,
-    front_suspension: 5, rear_suspension: 5, front_anti_roll_bar: 5,
-    rear_anti_roll_bar: 5, front_ride_height: 5, rear_ride_height: 5,
+    front_wing: 25, rear_wing: 25, on_throttle: 75, off_throttle: 60, engine_braking: 50,
+    front_camber: -3.0, rear_camber: -1.5, front_toe: 0.05, rear_toe: 0.20,
+    front_suspension: 20, rear_suspension: 20, front_anti_roll_bar: 10,
+    rear_anti_roll_bar: 10, front_ride_height: 24, rear_ride_height: 50,
     brake_pressure: 90, brake_bias: 58,
-    front_left_tyre_pressure: 23.0, front_right_tyre_pressure: 23.0,
-    rear_left_tyre_pressure: 22.0, rear_right_tyre_pressure: 22.0,
+    front_tyre_pressure: 25.5, rear_tyre_pressure: 23.0,
   })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
