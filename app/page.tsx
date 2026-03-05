@@ -39,10 +39,10 @@ export default function Home() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">My Setups</h1>
+        <h1 className="text-2xl font-bold">Mes Setups</h1>
         <input
           type="text"
-          placeholder="Filter by track..."
+          placeholder="Filtrer par circuit..."
           value={track}
           onChange={(e) => setTrack(e.target.value)}
           className="bg-zinc-900 border border-zinc-700 rounded px-3 py-1.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-red-500"
@@ -50,12 +50,12 @@ export default function Home() {
       </div>
 
       {loading ? (
-        <p className="text-zinc-500">Loading...</p>
+        <p className="text-zinc-500">Chargement...</p>
       ) : setups.length === 0 ? (
         <div className="text-center py-20 text-zinc-500">
-          <p className="text-lg mb-2">No setups yet.</p>
+          <p className="text-lg mb-2">Aucun setup pour le moment.</p>
           <Link href="/setups/new" className="text-red-500 hover:underline">
-            Create your first setup!
+            Créez votre premier setup !
           </Link>
         </div>
       ) : (
@@ -77,7 +77,7 @@ export default function Home() {
                 <span className="text-xs bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded">
                   {s.car}
                 </span>
-                <span className="text-xs text-zinc-500">by {s.profiles?.username}</span>
+                <span className="text-xs text-zinc-500">par {s.profiles?.username}</span>
               </div>
             </Link>
           ))}

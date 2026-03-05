@@ -7,7 +7,7 @@ const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "F1 Setups",
-  description: "Share and discover F1 car setups",
+  description: "Partagez et découvrez des setups de voiture F1",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

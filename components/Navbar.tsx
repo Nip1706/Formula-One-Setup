@@ -33,7 +33,7 @@ export default function Navbar() {
         </Link>
         <div className="flex items-center gap-4 text-sm">
           <Link href="/" className="text-zinc-400 hover:text-white transition-colors">
-            Browse
+            Parcourir
           </Link>
           {user ? (
             <>
@@ -41,13 +41,13 @@ export default function Navbar() {
                 href="/setups/new"
                 className="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded transition-colors"
               >
-                + New Setup
+                + Nouveau Setup
               </Link>
               <button
                 onClick={logout}
                 className="text-zinc-400 hover:text-white transition-colors"
               >
-                Logout
+                Déconnexion
               </button>
             </>
           ) : (
@@ -55,7 +55,7 @@ export default function Navbar() {
               href="/auth"
               className="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded transition-colors"
             >
-              Login / Sign Up
+              Connexion / Inscription
             </Link>
           )}
         </div>

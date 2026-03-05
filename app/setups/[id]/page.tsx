@@ -21,12 +21,12 @@ type Comment = {
 }
 
 const SECTIONS = [
-  { title: 'Aerodynamics', fields: [['Front Wing', 'front_wing'], ['Rear Wing', 'rear_wing']] },
-  { title: 'Transmission', fields: [['On Throttle %', 'on_throttle'], ['Off Throttle %', 'off_throttle'], ['Engine Braking', 'engine_braking']] },
-  { title: 'Suspension Geometry', fields: [['Front Camber', 'front_camber'], ['Rear Camber', 'rear_camber'], ['Front Toe', 'front_toe'], ['Rear Toe', 'rear_toe']] },
-  { title: 'Suspension', fields: [['Front Suspension', 'front_suspension'], ['Rear Suspension', 'rear_suspension'], ['Front ARB', 'front_anti_roll_bar'], ['Rear ARB', 'rear_anti_roll_bar'], ['Front Ride Height', 'front_ride_height'], ['Rear Ride Height', 'rear_ride_height']] },
-  { title: 'Brakes', fields: [['Brake Pressure %', 'brake_pressure'], ['Front Brake Bias %', 'brake_bias']] },
-  { title: 'Tyre Pressures', fields: [['Front Left (PSI)', 'front_left_tyre_pressure'], ['Front Right (PSI)', 'front_right_tyre_pressure'], ['Rear Left (PSI)', 'rear_left_tyre_pressure'], ['Rear Right (PSI)', 'rear_right_tyre_pressure']] },
+  { title: 'Aérodynamique', fields: [['Aileron avant', 'front_wing'], ['Aileron arrière', 'rear_wing']] },
+  { title: 'Transmission', fields: [['Accélération %', 'on_throttle'], ['Décélération %', 'off_throttle'], ['Frein moteur', 'engine_braking']] },
+  { title: 'Géométrie de suspension', fields: [['Carrossage avant', 'front_camber'], ['Carrossage arrière', 'rear_camber'], ['Pincement avant', 'front_toe'], ['Pincement arrière', 'rear_toe']] },
+  { title: 'Suspension', fields: [['Suspension avant', 'front_suspension'], ['Suspension arrière', 'rear_suspension'], ['Antiroulis avant', 'front_anti_roll_bar'], ['Antiroulis arrière', 'rear_anti_roll_bar'], ['Garde au sol avant', 'front_ride_height'], ['Garde au sol arrière', 'rear_ride_height']] },
+  { title: 'Freins', fields: [['Pression de frein %', 'brake_pressure'], ['Répartition avant %', 'brake_bias']] },
+  { title: 'Pression des pneus', fields: [['Avant gauche (PSI)', 'front_left_tyre_pressure'], ['Avant droit (PSI)', 'front_right_tyre_pressure'], ['Arrière gauche (PSI)', 'rear_left_tyre_pressure'], ['Arrière droit (PSI)', 'rear_right_tyre_pressure']] },
 ]
 
 export default function SetupPage() {
@@ -72,13 +72,13 @@ export default function SetupPage() {
   }
 
   async function deleteSetup() {
-    if (!confirm('Delete this setup?')) return
+    if (!confirm('Supprimer ce setup ?')) return
     await supabase.from('setups').delete().eq('id', id)
     router.push('/')
   }
 
-  if (loading) return <p className="text-zinc-500">Loading...</p>
-  if (!setup) return <p className="text-zinc-500">Setup not found.</p>
+  if (loading) return <p className="text-zinc-500">Chargement...</p>
+  if (!setup) return <p className="text-zinc-500">Setup introuvable.</p>
 
   return (
     <div className="max-w-2xl mx-auto flex flex-col gap-6">
@@ -87,12 +87,12 @@ export default function SetupPage() {
           <div>
             <h1 className="text-2xl font-bold">{setup.title}</h1>
             <p className="text-zinc-400 text-sm mt-1">
-              {setup.track} · {setup.car} · by {setup.profiles?.username} · {new Date(setup.created_at).toLocaleDateString()}
+              {setup.track} · {setup.car} · par {setup.profiles?.username} · {new Date(setup.created_at).toLocaleDateString('fr-FR')}
             </p>
           </div>
           {user?.id === setup.profiles?.id && (
             <button onClick={deleteSetup} className="text-xs text-zinc-500 hover:text-red-400 transition-colors">
-              Delete
+              Supprimer
             </button>
           )}
         </div>
@@ -115,14 +115,15 @@ export default function SetupPage() {
       {setup.notes && (
         <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
           <h2 className="text-sm font-semibold text-red-400 uppercase tracking-wider mb-2">Notes</h2>
+
           <p className="text-sm text-zinc-300 whitespace-pre-line">{setup.notes}</p>
         </div>
       )}
 
       <div>
-        <h2 className="text-lg font-semibold mb-4">Comments ({comments.length})</h2>
+        <h2 className="text-lg font-semibold mb-4">Commentaires ({comments.length})</h2>
         <div className="flex flex-col gap-3 mb-4">
-          {comments.length === 0 && <p className="text-zinc-500 text-sm">No comments yet.</p>}
+          {comments.length === 0 && <p className="text-zinc-500 text-sm">Aucun commentaire pour le moment.</p>}
           {comments.map((c) => (
             <div key={c.id} className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
               <div className="flex items-center justify-between mb-1">
@@ -138,7 +139,7 @@ export default function SetupPage() {
           <form onSubmit={submitComment} className="flex gap-2">
             <input
               type="text"
-              placeholder="Add a comment..."
+              placeholder="Ajouter un commentaire..."
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               className="flex-1 bg-zinc-900 border border-zinc-700 rounded px-3 py-2 text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 text-sm"
@@ -148,12 +149,12 @@ export default function SetupPage() {
               disabled={submitting || !comment.trim()}
               className="bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white px-4 py-2 rounded text-sm transition-colors"
             >
-              Post
+              Publier
             </button>
           </form>
         ) : (
           <p className="text-zinc-500 text-sm">
-            <a href="/auth" className="text-red-400 hover:underline">Log in</a> to comment.
+            <a href="/auth" className="text-red-400 hover:underline">Connectez-vous</a> pour commenter.
           </p>
         )}
       </div>

@@ -24,33 +24,33 @@ const AERO: FieldConfig[] = [
   { label: 'Rear Wing', key: 'rear_wing', min: 0, max: 50 },
 ]
 const TRANSMISSION: FieldConfig[] = [
-  { label: 'On Throttle %', key: 'on_throttle', min: 50, max: 100 },
-  { label: 'Off Throttle %', key: 'off_throttle', min: 20, max: 100 },
-  { label: 'Engine Braking', key: 'engine_braking', min: 0, max: 100 },
+  { label: 'Accélération %', key: 'on_throttle', min: 50, max: 100 },
+  { label: 'Décélération %', key: 'off_throttle', min: 20, max: 100 },
+  { label: 'Frein moteur', key: 'engine_braking', min: 0, max: 100 },
 ]
 const GEOMETRY: FieldConfig[] = [
-  { label: 'Front Camber', key: 'front_camber', min: -3.5, max: -2.5, step: 0.1 },
-  { label: 'Rear Camber', key: 'rear_camber', min: -2.0, max: -1.0, step: 0.1 },
-  { label: 'Front Toe', key: 'front_toe', min: 0.00, max: 0.10, step: 0.01 },
-  { label: 'Rear Toe', key: 'rear_toe', min: 0.10, max: 0.30, step: 0.01 },
+  { label: 'Carrossage avant', key: 'front_camber', min: -3.5, max: -2.5, step: 0.1 },
+  { label: 'Carrossage arrière', key: 'rear_camber', min: -2.0, max: -1.0, step: 0.1 },
+  { label: 'Pincement avant', key: 'front_toe', min: 0.00, max: 0.10, step: 0.01 },
+  { label: 'Pincement arrière', key: 'rear_toe', min: 0.10, max: 0.30, step: 0.01 },
 ]
 const SUSPENSION: FieldConfig[] = [
-  { label: 'Front Suspension', key: 'front_suspension', min: 1, max: 41 },
-  { label: 'Rear Suspension', key: 'rear_suspension', min: 1, max: 41 },
-  { label: 'Front Anti-Roll Bar', key: 'front_anti_roll_bar', min: 1, max: 21 },
-  { label: 'Rear Anti-Roll Bar', key: 'rear_anti_roll_bar', min: 1, max: 21 },
-  { label: 'Front Ride Height', key: 'front_ride_height', min: 19, max: 30 },
-  { label: 'Rear Ride Height', key: 'rear_ride_height', min: 40, max: 60 },
+  { label: 'Suspension avant', key: 'front_suspension', min: 1, max: 41 },
+  { label: 'Suspension arrière', key: 'rear_suspension', min: 1, max: 41 },
+  { label: 'Barre antiroulis avant', key: 'front_anti_roll_bar', min: 1, max: 21 },
+  { label: 'Barre antiroulis arrière', key: 'rear_anti_roll_bar', min: 1, max: 21 },
+  { label: 'Garde au sol avant', key: 'front_ride_height', min: 19, max: 30 },
+  { label: 'Garde au sol arrière', key: 'rear_ride_height', min: 40, max: 60 },
 ]
 const BRAKES: FieldConfig[] = [
-  { label: 'Brake Pressure %', key: 'brake_pressure', min: 80, max: 100 },
-  { label: 'Front Brake Bias %', key: 'brake_bias', min: 50, max: 70 },
+  { label: 'Pression de frein %', key: 'brake_pressure', min: 80, max: 100 },
+  { label: 'Répartition avant %', key: 'brake_bias', min: 50, max: 70 },
 ]
 const TYRES: FieldConfig[] = [
-  { label: 'Front Left (PSI)', key: 'front_left_tyre_pressure', min: 22.0, max: 29.5, step: 0.1 },
-  { label: 'Front Right (PSI)', key: 'front_right_tyre_pressure', min: 22.0, max: 29.5, step: 0.1 },
-  { label: 'Rear Left (PSI)', key: 'rear_left_tyre_pressure', min: 20.0, max: 26.5, step: 0.1 },
-  { label: 'Rear Right (PSI)', key: 'rear_right_tyre_pressure', min: 20.0, max: 26.5, step: 0.1 },
+  { label: 'Avant gauche (PSI)', key: 'front_left_tyre_pressure', min: 22.0, max: 29.5, step: 0.1 },
+  { label: 'Avant droit (PSI)', key: 'front_right_tyre_pressure', min: 22.0, max: 29.5, step: 0.1 },
+  { label: 'Arrière gauche (PSI)', key: 'rear_left_tyre_pressure', min: 20.0, max: 26.5, step: 0.1 },
+  { label: 'Arrière droit (PSI)', key: 'rear_right_tyre_pressure', min: 20.0, max: 26.5, step: 0.1 },
 ]
 
 export default function NewSetupPage() {
@@ -128,13 +128,13 @@ export default function NewSetupPage() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">New Setup</h1>
+      <h1 className="text-2xl font-bold mb-6">Nouveau Setup</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
 
         <div className="flex flex-col gap-3">
           <input
             type="text"
-            placeholder="Setup title (e.g. Monaco Quali Setup)"
+            placeholder="Titre du setup (ex: Setup Qualif Monaco)"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
@@ -159,12 +159,12 @@ export default function NewSetupPage() {
         </div>
 
         {[
-          { title: 'Aerodynamics', fields: AERO },
+          { title: 'Aérodynamique', fields: AERO },
           { title: 'Transmission', fields: TRANSMISSION },
-          { title: 'Suspension Geometry', fields: GEOMETRY },
+          { title: 'Géométrie de suspension', fields: GEOMETRY },
           { title: 'Suspension', fields: SUSPENSION },
-          { title: 'Brakes', fields: BRAKES },
-          { title: 'Tyre Pressures', fields: TYRES },
+          { title: 'Freins', fields: BRAKES },
+          { title: 'Pression des pneus', fields: TYRES },
         ].map(({ title: sectionTitle, fields }) => (
           <div key={sectionTitle} className="bg-zinc-900 border border-zinc-800 rounded-lg p-4 flex flex-col gap-3">
             <h2 className="text-sm font-semibold text-red-400 uppercase tracking-wider">{sectionTitle}</h2>
@@ -173,7 +173,7 @@ export default function NewSetupPage() {
         ))}
 
         <textarea
-          placeholder="Notes (optional) — lap times, conditions, tips..."
+          placeholder="Notes (optionnel) — temps au tour, conditions, conseils..."
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           rows={3}
@@ -187,7 +187,7 @@ export default function NewSetupPage() {
           disabled={loading}
           className="bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-semibold py-2 rounded transition-colors"
         >
-          {loading ? 'Saving...' : 'Publish Setup'}
+          {loading ? 'Enregistrement...' : 'Publier le setup'}
         </button>
       </form>
     </div>

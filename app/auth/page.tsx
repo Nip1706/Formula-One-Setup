@@ -43,13 +43,13 @@ export default function AuthPage() {
   return (
     <div className="max-w-sm mx-auto mt-16">
       <h1 className="text-2xl font-bold mb-6 text-center">
-        {mode === 'login' ? 'Log In' : 'Sign Up'}
+        {mode === 'login' ? 'Connexion' : 'Inscription'}
       </h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="email"
-          placeholder="Email"
+          placeholder="Adresse e-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -57,7 +57,7 @@ export default function AuthPage() {
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Mot de passe"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -72,17 +72,17 @@ export default function AuthPage() {
           disabled={loading}
           className="bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-semibold py-2 rounded transition-colors"
         >
-          {loading ? 'Loading...' : mode === 'login' ? 'Log In' : 'Sign Up'}
+          {loading ? 'Chargement...' : mode === 'login' ? 'Se connecter' : "S'inscrire"}
         </button>
       </form>
 
       <p className="text-center text-zinc-500 text-sm mt-4">
-        {mode === 'login' ? "Don't have an account?" : 'Already have an account?'}{' '}
+        {mode === 'login' ? "Pas encore de compte ?" : 'Déjà un compte ?'}{' '}
         <button
           onClick={() => { setMode(mode === 'login' ? 'signup' : 'login'); setError(''); setMessage('') }}
           className="text-red-400 hover:underline"
         >
-          {mode === 'login' ? 'Sign Up' : 'Log In'}
+          {mode === 'login' ? "S'inscrire" : 'Se connecter'}
         </button>
       </p>
     </div>
