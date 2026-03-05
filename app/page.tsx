@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">Car Setups</h1>
+        <h1 className="text-2xl font-bold">My Setups</h1>
         <input
           type="text"
           placeholder="Filter by track..."
@@ -55,7 +55,7 @@ export default function Home() {
         <div className="text-center py-20 text-zinc-500">
           <p className="text-lg mb-2">No setups yet.</p>
           <Link href="/setups/new" className="text-red-500 hover:underline">
-            Be the first to share one!
+            Create your first setup!
           </Link>
         </div>
       ) : (
