@@ -26,7 +26,7 @@ const SECTIONS = [
   { title: 'Suspension Geometry', fields: [['Front Camber', 'front_camber'], ['Rear Camber', 'rear_camber'], ['Front Toe', 'front_toe'], ['Rear Toe', 'rear_toe']] },
   { title: 'Suspension', fields: [['Front Suspension', 'front_suspension'], ['Rear Suspension', 'rear_suspension'], ['Front ARB', 'front_anti_roll_bar'], ['Rear ARB', 'rear_anti_roll_bar'], ['Front Ride Height', 'front_ride_height'], ['Rear Ride Height', 'rear_ride_height']] },
   { title: 'Brakes', fields: [['Brake Pressure %', 'brake_pressure'], ['Front Brake Bias %', 'brake_bias']] },
-  { title: 'Tyre Pressures', fields: [['Front (PSI)', 'front_tyre_pressure'], ['Rear (PSI)', 'rear_tyre_pressure']] },
+  { title: 'Tyre Pressures', fields: [['Front Left (PSI)', 'front_left_tyre_pressure'], ['Front Right (PSI)', 'front_right_tyre_pressure'], ['Rear Left (PSI)', 'rear_left_tyre_pressure'], ['Rear Right (PSI)', 'rear_right_tyre_pressure']] },
 ]
 
 export default function SetupPage() {

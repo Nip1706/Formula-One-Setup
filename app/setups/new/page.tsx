@@ -47,8 +47,10 @@ const BRAKES: FieldConfig[] = [
   { label: 'Front Brake Bias %', key: 'brake_bias', min: 50, max: 70 },
 ]
 const TYRES: FieldConfig[] = [
-  { label: 'Front Pressure (PSI)', key: 'front_tyre_pressure', min: 22.0, max: 29.5, step: 0.1 },
-  { label: 'Rear Pressure (PSI)', key: 'rear_tyre_pressure', min: 20.0, max: 26.5, step: 0.1 },
+  { label: 'Front Left (PSI)', key: 'front_left_tyre_pressure', min: 22.0, max: 29.5, step: 0.1 },
+  { label: 'Front Right (PSI)', key: 'front_right_tyre_pressure', min: 22.0, max: 29.5, step: 0.1 },
+  { label: 'Rear Left (PSI)', key: 'rear_left_tyre_pressure', min: 20.0, max: 26.5, step: 0.1 },
+  { label: 'Rear Right (PSI)', key: 'rear_right_tyre_pressure', min: 20.0, max: 26.5, step: 0.1 },
 ]
 
 export default function NewSetupPage() {
@@ -63,7 +65,8 @@ export default function NewSetupPage() {
     front_suspension: 20, rear_suspension: 20, front_anti_roll_bar: 10,
     rear_anti_roll_bar: 10, front_ride_height: 24, rear_ride_height: 50,
     brake_pressure: 90, brake_bias: 58,
-    front_tyre_pressure: 25.5, rear_tyre_pressure: 23.0,
+    front_left_tyre_pressure: 25.5, front_right_tyre_pressure: 25.5,
+    rear_left_tyre_pressure: 23.0, rear_right_tyre_pressure: 23.0,
   })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
